@@ -1,0 +1,60 @@
+{{set . "title" "Employed"}}
+{{template "template/header.html" .}}
+<link rel="stylesheet" href="/public/plugins/datatables/dataTables.bootstrap.css">
+<div class="row" >
+    <div class="col-md-12 col-xs-12">
+        <div class="box" style="height: 650px;">
+            <div class="box-header">
+              <h3 class="box-title">Hover Data Table</h3>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+              <table id="example2" class="table table-bordered table-hover">
+                <thead>
+                <tr>
+                  <th>Id</th>
+                  <th>Name</th>
+                  <th>Email</th>
+                  <th>Phone</th>
+                  <th>Address</th>
+                  <th>Photo</th>
+                  <th>Action</th>
+                </tr>
+                </thead>
+                <tbody>
+                {{range $index, $config := .model.EmlpoyedList}}
+                  <tr>
+                      <td class="something">{{$config.Id}}</td>
+                      <td>{{$config.Name}}</td>
+                      <td>{{$config.Email}}</td>
+                      <td>{{$config.Phone}}</td>
+                      <td>{{$config.Address}}</td>
+                      <td>{{$config.Photo}}</td>
+                      <td>
+                          <a class="btn bg-green" href="/config/update/{{$config.Id}}" ><i class="fa fa-pencil-square-o"></i> Edit </a>
+                      </td>
+                  </tr>
+                {{end}}
+                </tbody>
+
+              </table>
+            </div>
+            <!-- /.box-body -->
+        </div>
+    </div>
+</div>
+{{template "template/footer.html" .}}
+<script src="/public/plugins/datatables/jquery.dataTables.min.js"></script>
+<script src="/public/plugins/datatables/dataTables.bootstrap.min.js"></script>
+<script>
+  $( document ).ready(function() {
+    $('#example2').DataTable({
+      "paging": true,
+      "lengthChange": false,
+      "searching": true,
+      "ordering": false,
+      "info": false,
+      "autoWidth": false
+    });
+  });
+</script>

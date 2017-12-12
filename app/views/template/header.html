@@ -1,0 +1,68 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>{{.title}}</title>
+        <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+        <link rel="stylesheet" href="/public/plugins/bootstrap/css/bootstrap.min.css" />
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" />
+        <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" />
+        <link rel="stylesheet" href="/public/plugins/admin-lte-dist/css/AdminLTE.min.css" />
+        <link rel="stylesheet" href="/public/plugins/admin-lte-dist/css/skins/_all-skins.css" />
+        <link rel="stylesheet" href="/public/plugins/bootstrap-select/css/bootstrap-select.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.0/jquery-confirm.min.css">
+        <link rel="stylesheet" href="/public/css/includes/master.view.css" />
+        <style type="text/css">
+            body a {
+                color: #0e0e0e;
+            }
+        </style>
+    </head>
+    <body class="hold-transition skin-blue sidebar-mini">
+    <div class="wrapper">
+        <header class="main-header">
+            <!-- Logo Link to Dashboard-->
+            <a href="#" class="logo">
+                <!-- mini logo for sidebar mini 50x50 pixels -->
+                <span class="logo-mini"><b>G</b>C</span>
+                <!-- logo for regular state and mobile devices -->
+                <span class="logo-lg">
+                    <b>Golang</b>
+                    <b>CURD</b>
+                </span>
+            </a>
+            <!-- Header Navbar: style can be found in header.less -->
+            <nav class="navbar navbar-static-top" role="navigation">
+                <!-- Sidebar toggle button-->
+                <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </a>
+                <div class="navbar-custom-menu">
+                    <ul class="nav navbar-nav">
+                        <!-- User Account: style can be found in dropdown.less -->
+                        <li class="dropdown user user-menu">
+                            <a href="#" class="dropdown-toggle">
+                                <img src="/public/img/icons/ic-superuser.png" class="user-image" alt="User Image">
+                                <span class="hidden-xs">admin</span>
+                            </a>
+
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </header>
+        {{template "template/sidebar.html" .}}
+        <div class="content-wrapper">
+            <section class="content-header">
+                <h1>
+                    {{.contentHeader}}
+                </h1>
+                <small style="font-size: 15px; margin-left: 2px">{{.contentDescription}}</small>
+                <ol class="breadcrumb">
+                    <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+                </ol>
+            </section>
+            <section class="content">
