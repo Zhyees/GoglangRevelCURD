@@ -1,10 +1,10 @@
-{{set . "title" "Employed"}} {{template "template/header.html" .}}
+{{set . "title" "Department"}} {{template "template/header.html" .}}
 <link rel="stylesheet" href="/public/plugins/datatables/dataTables.bootstrap.css">
 <div class="row">
     <div class="col-md-12 col-xs-12">
         <div class="box" style="height: 650px;">
             <div class="box-header">
-                <h3 class="box-title">Hover Data Table</h3>
+                <h3 class="box-title">Department Data Table</h3>
             </div>
             <!-- /.box-header -->
             <div class="box-body">
@@ -12,23 +12,17 @@
                     <thead>
                         <tr>
                             <th>Id</th>
-                            <th>Name</th>
-                            <th>Email</th>
-                            <th>Phone</th>
-                            <th>Address</th>
-                            <th>Photo</th>
+                            <th>Department Name</th>
+                            <th>Number Of Employees</th>
                             <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
-                        {{range $index, $config := .model.EmlpoyedList}}
+                        {{range $index, $config := .model.DepartmentList}}
                         <tr>
                             <td class="something">{{$config.Id}}</td>
-                            <td>{{$config.Name}}</td>
-                            <td>{{$config.Email}}</td>
-                            <td>{{$config.Phone}}</td>
-                            <td>{{$config.Address}}</td>
-                            <td>{{$config.Photo}}</td>
+                            <td>{{$config.DepartmentName}}</td>
+                            <td>{{$config.NumberOfEmployees}}</td>
                             <td>
                                 <a class="btn bg-green" href="/config/update/{{$config.Id}}"><i class="fa fa-pencil-square-o"></i> Edit </a>
                             </td>
