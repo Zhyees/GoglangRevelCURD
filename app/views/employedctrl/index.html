@@ -5,7 +5,16 @@
     <div class="col-md-12 col-xs-12">
         <div class="box" style="height: 650px;">
             <div class="box-header">
-              <h3 class="box-title">Hover Data Table</h3>
+              <h3 class="box-title">List Data Employed</h3>
+              <a href="/employed/add"><button class="btn btn-default pull-right">
+                    Tambah Admin
+                </button></a>
+            </div>
+            <div class="row">
+                <div class="col-xs-12" style="margin: 5px 0px 0px 12px;">
+                    <span class="text-green">{{.flash.success}}</span>
+                    <span class="text-red text-center">{{.flash.error}}</span>
+                </div>
             </div>
             <!-- /.box-header -->
             <div class="box-body">
