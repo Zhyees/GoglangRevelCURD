@@ -13,6 +13,13 @@ GET     /                                       App.Index
 GET     /employed/                        EmployedCtrl.Index
 GET     /employed/add                       EmployedCtrl.AddEmployed
 POST     /employed/add-action                      EmployedCtrl.AddAction
+
+
+#department routes
+GET     /department/                    DepartmentCtrl.Index
+
+
+
 # Ignore favicon requests
 GET     /favicon.ico                            404
 

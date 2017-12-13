@@ -1,18 +1,19 @@
 package controllers
 
 import (
-	"github.com/revel/revel"
-	"github.com/go-gorp/gorp"
+	"GoglangRevelCURD/app/models"
 	"database/sql"
-	_ "github.com/go-sql-driver/mysql"
 	"fmt"
 	"strings"
-	"GoglangRevelCURD/app/models"
+
+	"github.com/go-gorp/gorp"
+	_ "github.com/go-sql-driver/mysql"
+	"github.com/revel/revel"
 	//"net/http"
 	//"encoding/json"
 )
 
-func init(){
+func init() {
 
 	revel.Filters = []revel.Filter{
 		revel.PanicFilter,             // Recover from panics and display an error page instead.
@@ -25,9 +26,9 @@ func init(){
 		revel.I18nFilter,              // Resolve the requested language
 		//TokenAuthFilter,               // Resolve Token Authentication (Custom)
 		//URLHookFilter,                 // Store current action url (Custom)
-		revel.InterceptorFilter,       // Run interceptors around the action.
-		revel.CompressFilter,          // Compress the result. [^1]
-		revel.ActionInvoker,           // Invoke the action.
+		revel.InterceptorFilter, // Run interceptors around the action.
+		revel.CompressFilter,    // Compress the result. [^1]
+		revel.ActionInvoker,     // Invoke the action.
 	}
 
 	revel.OnAppStart(InitDb)
@@ -48,14 +49,13 @@ func getParamString(param string, defaultValue string) string {
 	return p
 }
 
-
 func getConnectionString() string {
-	host := getParamString("db.host", "localhost")
-	port := getParamString("db.port", "3306")
-	user := getParamString("db.user", "root")
-	pass := getParamString("db.password", "12345abc")
-	dbname := getParamString("db.name", "curd")
-	protocol := getParamString("db.protocol", "tcp")
+	host := getParamString("db.host1", "")
+	port := getParamString("db.port1", "")
+	user := getParamString("db.user1", "")
+	pass := getParamString("db.password1", "")
+	dbname := getParamString("db.name1", "")
+	protocol := getParamString("db.protocol1", "")
 	dbargs := getParamString("dbargs", " ")
 
 	if strings.Trim(dbargs, " ") != "" {
@@ -67,13 +67,13 @@ func getConnectionString() string {
 		user, pass, protocol, host, port, dbname, dbargs)
 }
 
-var InitDb func() = func(){
+var InitDb func() = func() {
 	connectionString := getConnectionString()
 	if db, err := sql.Open("mysql", connectionString); err != nil {
 		revel.ERROR.Fatal(err)
 	} else {
 		Dbm = &gorp.DbMap{
-			Db: db,
+			Db:      db,
 			Dialect: gorp.MySQLDialect{"InnoDB", "UTF8"}}
 	}
 	// Defines the table for use by GORP
@@ -86,7 +86,7 @@ var InitDb func() = func(){
 	}
 }
 
-func defineTables(dbm *gorp.DbMap){
+func defineTables(dbm *gorp.DbMap) {
 	dbm.AddTableWithName(models.Employed{}, "data").SetKeys(true, "id")
 }
 
