@@ -10,9 +10,18 @@ module:testrunner
 GET     /                                       App.Index
 
 #employed routes
-GET     /employed/                        EmployedCtrl.Index
-GET     /employed/add                       EmployedCtrl.AddEmployed
-POST     /employed/add-action                      EmployedCtrl.AddAction
+GET     /employed/                        		EmployedCtrl.Index
+GET     /employed/add                       	EmployedCtrl.Add
+GET     /employed/update/:id                    EmployedCtrl.UpdateByID
+POST     /employed/add-action                   EmployedCtrl.AddAction
+POST     /employed/update-action                EmployedCtrl.UpdateAction
+GET     /employed/delete/:id                 	EmployedCtrl.DeleteAction
+
+#department routes
+GET     /department/                    DepartmentCtrl.Index
+
+
+
 # Ignore favicon requests
 GET     /favicon.ico                            404
 

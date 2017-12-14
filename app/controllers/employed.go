@@ -20,8 +20,17 @@ func (c EmployedCtrl) Index() revel.Result {
 	model := vm.LoadAll()
 	return c.Render(model)
 }
-func (c EmployedCtrl) AddEmployed() revel.Result {
+func (c EmployedCtrl) Add() revel.Result {
 	return c.Render()
+}
+func (c EmployedCtrl) UpdateByID(id int) revel.Result {
+	vm := employedvm.GetByIdViewModels{
+		Txn: c.Txn,
+		Id: id,
+	}
+
+	model := vm.LoadAll()
+	return c.Render(model)
 }
 func (c EmployedCtrl) AddAction(employed models.Employed) revel.Result {
 	vm := employedvm.AddActionViewModel{
@@ -30,11 +39,45 @@ func (c EmployedCtrl) AddAction(employed models.Employed) revel.Result {
 		},
 		Employed: employed,
 	}
-	model := vm.AddEmployed()
+	model := vm.LoadAll()
 	if model.IsSuccess{
 		c.Flash.Success(model.Message)
 	}else {
 		c.Flash.Error(model.Message)
 	}
+	return c.Redirect(routes.EmployedCtrl.Index())
+}
+func (c EmployedCtrl) UpdateAction(id int, updateemployed models.Employed) revel.Result {
+	vm := employedvm.UpdateActionViewModel{
+		BaseVM: viewmodels.BaseVM{
+			Txn: c.Txn,
+		},
+		UpdateEmployed: updateemployed,
+		Id: id,
+	}
+	model := vm.LoadAll()
+	if model.IsSuccess{
+		c.Flash.Success(model.Message)
+	}else {
+		c.Flash.Error(model.Message)
+	}
+	return c.Redirect(routes.EmployedCtrl.Index())
+}
+func (c EmployedCtrl) DeleteAction(id int) revel.Result{
+	vm := employedvm.DeleteActionViewModel{
+		BaseVM: viewmodels.BaseVM{
+			Txn: c.Txn,
+		},
+		Id: id,
+	}
+
+	model := vm.LoadAll()
+
+	if model.IsSuccess == true{
+		c.Flash.Success(model.Message)
+	}else {
+		c.Flash.Error(model.Message)
+	}
+
 	return c.Redirect(routes.EmployedCtrl.Index())
 }
