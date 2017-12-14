@@ -1,0 +1,40 @@
+{{set . "title" "Employed"}} {{template "template/header.html" .}}
+<div class="row">
+    <div class="col-md-12 col-xs-12">
+        <div class="box">
+            <div class="box-header">
+                <h3 class="box-title">Edit Data Department</h3>
+            </div>
+            <form method="POST" action='{{url "DepartmentCtrl.UpdateAction"}}'>
+                {{with $field := field "id" .}}
+                <input type="hidden" name="{{$field.Name}}" value="{{$.model.Department.Id}}" class="form-control" id="id" required /> {{end}}
+                <div class="box-body">
+                    <div class="row clearfix">
+                        <div class="col-md-6">
+                            <label for="name" class="control-label">Name</label>
+                            <div class="form-group">
+                                {{with $field := field "updatedepartment.DepartmentName" .}}
+                                <input type="text" name="{{$field.Name}}" value="{{$.model.Department.DepartmentName}}" class="form-control" id="name" required /> {{end}}
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="email" class="control-label">Number Of Employees</label>
+                            <div class="form-group">
+                                {{with $field := field "updatedepartment.NumberOfEmployees" .}}
+                                <input type="number" name="{{$field.Name}}" class="form-control" id="email" value="{{$.model.Department.NumberOfEmployees}}" required/> {{end}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="box-footer">
+                    <button type="submit" class="btn btn-success">
+            		<i class="fa fa-check"></i> Save
+            	</button>
+                </div>
+                <!-- /.box-body -->
+
+            </form>
+        </div>
+    </div>
+</div>
+{{template "template/footer.html" .}}
