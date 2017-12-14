@@ -50,12 +50,12 @@ func getParamString(param string, defaultValue string) string {
 }
 
 func getConnectionString() string {
-	host := getParamString("db.host1", "")
-	port := getParamString("db.port1", "")
-	user := getParamString("db.user1", "")
-	pass := getParamString("db.password1", "")
-	dbname := getParamString("db.name1", "")
-	protocol := getParamString("db.protocol1", "")
+	host := getParamString("db.host", "")
+	port := getParamString("db.port", "")
+	user := getParamString("db.user", "")
+	pass := getParamString("db.password", "")
+	dbname := getParamString("db.name", "")
+	protocol := getParamString("db.protocol", "")
 	dbargs := getParamString("dbargs", " ")
 
 	if strings.Trim(dbargs, " ") != "" {

@@ -17,7 +17,7 @@ type AddActionViewModelResponse struct {
 }
 
 
-func (vm AddActionViewModel) AddEmployed() AddActionViewModelResponse{
+func (vm AddActionViewModel) LoadAll() AddActionViewModelResponse{
 	var errMessage string = "Gagal menambahkan Employed"
 	err := vm.Txn.Insert(&vm.Employed)
 	if err == nil{
