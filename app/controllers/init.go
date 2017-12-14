@@ -88,6 +88,7 @@ var InitDb func() = func() {
 
 func defineTables(dbm *gorp.DbMap) {
 	dbm.AddTableWithName(models.Employed{}, "data").SetKeys(true, "id")
+	dbm.AddTableWithName(models.Department{}, "department").SetKeys(true, "id")
 }
 
 //last effort

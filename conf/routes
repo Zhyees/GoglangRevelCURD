@@ -18,8 +18,12 @@ POST     /employed/update-action                EmployedCtrl.UpdateAction
 GET     /employed/delete/:id                 	EmployedCtrl.DeleteAction
 
 #department routes
-GET     /department/                    DepartmentCtrl.Index
-
+GET     /department/                            DepartmentCtrl.Index
+GET     /department/add                      	DepartmentCtrl.AddDepartment
+POST    /department/add-action                  DepartmentCtrl.AddAction
+GET     /department/update/:id                  DepartmentCtrl.UpdateDepartment
+POST    /department/update-action               DepartmentCtrl.UpdateAction
+GET     /department/delete/:id                 	DepartmentCtrl.DeleteAction
 
 
 # Ignore favicon requests
