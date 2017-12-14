@@ -6,9 +6,6 @@
         <div class="box" style="height: 650px;">
             <div class="box-header">
               <h3 class="box-title">List Data Employed</h3>
-              <a href="/employed/add"><button class="btn btn-default pull-right">
-                    Tambah Admin
-                </button></a>
             </div>
             <div class="row">
                 <div class="col-xs-12" style="margin: 5px 0px 0px 12px;">
@@ -18,6 +15,7 @@
             </div>
             <!-- /.box-header -->
             <div class="box-body">
+
               <table id="example2" class="table table-bordered table-hover">
                 <thead>
                 <tr>
@@ -31,22 +29,26 @@
                 </tr>
                 </thead>
                 <tbody>
-                {{range $index, $config := .model.EmlpoyedList}}
+                {{range $index, $employed := .model.EmlpoyedList}}
                   <tr>
-                      <td class="something">{{$config.Id}}</td>
-                      <td>{{$config.Name}}</td>
-                      <td>{{$config.Email}}</td>
-                      <td>{{$config.Phone}}</td>
-                      <td>{{$config.Address}}</td>
-                      <td>{{$config.Photo}}</td>
+                      <td class="something">{{$employed.Id}}</td>
+                      <td>{{$employed.Name}}</td>
+                      <td>{{$employed.Email}}</td>
+                      <td>{{$employed.Phone}}</td>
+                      <td>{{$employed.Address}}</td>
+                      <td>{{$employed.Photo}}</td>
                       <td>
-                          <a class="btn bg-green" href="/config/update/{{$config.Id}}" ><i class="fa fa-pencil-square-o"></i> Edit </a>
+                          <a class="btn bg-green" href="/employed/update/{{$employed.Id}}" ><i class="fa fa-pencil-square-o"></i> Edit </a>
+                          <a class="btn bg-red" href="javascript:void(0);" onclick="warning('{{$employed.Id}}')" ><i class="fa fa-trash"></i> Delete </a>
                       </td>
                   </tr>
                 {{end}}
                 </tbody>
 
               </table>
+               <a href="/employed/add"><button class="btn bg-blue pull-left">
+                    Tambah Admin
+                </button></a>
             </div>
             <!-- /.box-body -->
         </div>
@@ -56,6 +58,12 @@
 <script src="/public/plugins/datatables/jquery.dataTables.min.js"></script>
 <script src="/public/plugins/datatables/dataTables.bootstrap.min.js"></script>
 <script>
+  function warning(id){
+      if (confirm('Delete Data Employed ?')) {
+         window.location.href = "/employed/delete/"+id;
+      } else {
+      }
+    }
   $( document ).ready(function() {
     $('#example2').DataTable({
       "paging": true,
@@ -65,5 +73,6 @@
       "info": false,
       "autoWidth": false
     });
+
   });
 </script>
