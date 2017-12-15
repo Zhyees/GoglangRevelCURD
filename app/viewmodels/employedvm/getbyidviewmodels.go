@@ -17,7 +17,7 @@ type GetByIdViewModelsResponse struct {
 
 func (vm GetByIdViewModels) LoadAll() GetByIdViewModelsResponse{
 	employed := models.Employed{}
-	err := vm.Txn.SelectOne(&employed, "SELECT * FROM `data` where id = ? ", vm.Id)
+	err := vm.Txn.SelectOne(&employed, "SELECT * FROM `employed` where id = ? ", vm.Id)
 	if err == nil{
 		return GetByIdViewModelsResponse{
 			Employed: employed,

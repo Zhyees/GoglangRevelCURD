@@ -1,15 +1,16 @@
 <aside class="main-sidebar">
     <section class="sidebar">
-        <!-- Sidebar user panel -->
+        <!-- Sidebar user panel --> 
         <div class="user-panel">
             <div class="pull-left image">
                 <img src="/public/img/icons/ic-superuser.png" class="img-circle" alt="User Image">
             </div>
             <div class="pull-left info">
-                <p>Name</p>
-                <a href="#"><i class="fa fa-circle text-success"></i>Admin</a>
+                <p>{{.session.loginName}}</p>
+                <a href="#"><i class="fa fa-circle text-success"></i>{{.session.loginRole}}</a>
             </div>
         </div>
+
         <!-- /.search form -->
         <!-- sidebar menu: : style can be found in sidebar.less -->
         <ul class="sidebar-menu">
@@ -30,7 +31,7 @@
                 </a>
             </li>
             <li>
-                <a href="#">
+                <a href="/adminctrl/logout/">
                     <i class="glyphicon glyphicon-log-out"></i><span><b>Sign Out</b></span>
                 </a>
             </li>

@@ -6,8 +6,14 @@
 module:testrunner
 # module:jobs
 
+#Admin
+GET     /                                       AdminCtrl.Login
+GET     /admin/logout                           AdminCtrl.Logout
+POST    /admin/login-action                     AdminCtrl.LoginAction
+GET     /admin/unauthorized                     AdminCtrl.UnAuthorized
 
-GET     /                                       App.Index
+#home routes
+GET     /home                                   HomeCtrl.Index
 
 #employed routes
 GET     /employed/                        		EmployedCtrl.Index

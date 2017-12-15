@@ -10,7 +10,7 @@ import (
 	_ "github.com/go-sql-driver/mysql"
 	"github.com/revel/revel"
 	//"net/http"
-	//"encoding/json"
+	"encoding/json"
 )
 
 func init() {
@@ -24,8 +24,8 @@ func init() {
 		revel.FlashFilter,             // Restore and write the flash cookie.
 		revel.ValidationFilter,        // Restore kept validation errors and save new ones from cookie.
 		revel.I18nFilter,              // Resolve the requested language
-		//TokenAuthFilter,               // Resolve Token Authentication (Custom)
-		//URLHookFilter,                 // Store current action url (Custom)
+		TokenAuthFilter,               // Resolve Token Authentication (Custom)
+		URLHookFilter,                 // Store current action url (Custom)
 		revel.InterceptorFilter, // Run interceptors around the action.
 		revel.CompressFilter,    // Compress the result. [^1]
 		revel.ActionInvoker,     // Invoke the action.
@@ -87,22 +87,24 @@ var InitDb func() = func() {
 }
 
 func defineTables(dbm *gorp.DbMap) {
-	dbm.AddTableWithName(models.Employed{}, "data").SetKeys(true, "id")
+	dbm.AddTableWithName(models.Employed{}, "employed").SetKeys(true, "id")
 	dbm.AddTableWithName(models.Department{}, "department").SetKeys(true, "id")
+	dbm.AddTableWithName(models.Role{}, "role").SetKeys(true, "id")
+	dbm.AddTableWithName(models.Superuser{}, "superuser").SetKeys(true, "id")
 }
 
 //last effort
 //do this. Create unauthorized page
 //c.Result = c.RenderTemplate("admin/login.html")
 //return
-/*
+ 
 var TokenAuthFilter = func(c *revel.Controller, fc []revel.Filter) {
 	c.Args["controllersName"] = c.Name
 	c.Session["controllersName"] = c.Name
 
 	if c.Name != "AdminCtrl" && c.Name != "Static"{
 		if len(c.Session["superuser"]) < 1{
-			c.Result = c.RenderTemplate("admin/unauthorized.html")
+			c.Result = c.RenderTemplate("adminctrl/unauthorized.html")
 			return
 		}
 
@@ -110,7 +112,7 @@ var TokenAuthFilter = func(c *revel.Controller, fc []revel.Filter) {
 		err := json.Unmarshal([]byte(c.Session["superuser"]), &superuser)
 
 		if err != nil{
-			c.Result = c.RenderTemplate("admin/error.html")
+			c.Result = c.RenderTemplate("adminctrl/error.html")
 			return
 		}
 
@@ -125,10 +127,10 @@ var TokenAuthFilter = func(c *revel.Controller, fc []revel.Filter) {
 		//}
 
 		var found = false
-
+		revel.WARN.Printf("super user role  %+v", superuser.RoleId)
 		modules, err := Dbm.Select(models.MiniApp{}, "SELECT * FROM `mini_app_map` AS A INNER JOIN " +
 			"`mini_app` as B ON A.`mini_app_id` = B.`id` WHERE A.`role_id` = ?", superuser.RoleId)
-
+		revel.WARN.Printf("super user role  %+v", err)
 		for _, moduleRef := range modules{
 			module := moduleRef.(*models.MiniApp)
 
@@ -140,7 +142,7 @@ var TokenAuthFilter = func(c *revel.Controller, fc []revel.Filter) {
 		revel.WARN.Printf("modules length %+v", len(modules))
 
 		if !found && len(modules) > 0 {
-			c.Result = c.RenderTemplate("admin/unauthorized.html")
+			c.Result = c.RenderTemplate("adminctrl/unauthorized.html")
 			return
 		}
 	}
@@ -158,4 +160,4 @@ var URLHookFilter =  func(c *revel.Controller, fc []revel.Filter) {
 
 	fc[0](c, fc[1:]) // Execute the next filter stage.
 }
-*/
+

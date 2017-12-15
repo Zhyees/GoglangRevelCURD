@@ -1,0 +1,57 @@
+{{template "template/login.header.html" .}}
+<div class="login-box">
+    <div class="login-logo">
+        <a><b>GogLang</b> Revel <b>CURD</b></a>
+    </div>
+    <div class="login-box-body">
+        <p class="login-box-msg">Sign in to your account</p>
+        <form action="{{url "AdminCtrl.LoginAction"}}" id="formLogin" method="POST">
+        <div class="form-group has-feedback">
+            {{with $field := field "login.Email" .}}
+            <input type="email" name="{{$field.Name}}" class="form-control" placeholder="Email" value="{{$field.Flash}}" />
+            <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+            <p class="{{$field.ErrorClass}}">
+                <span class="error">{{$field.Error}}</span>
+            </p>
+            {{end}}
+        </div>
+        <div class="form-group has-feedback">
+            {{with $field := field "login.Password" .}}
+            <input type="password" name="{{$field.Name}}" class="form-control" placeholder="Password" value="{{$field.Flash}}" />
+            <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+            <p class="{{$field.ErrorClass}}">
+                <span class="error">{{$field.Error}}</span>
+            </p>
+            {{end}}
+        </div>
+        <div class="row">
+            <div class="col-xs-8">
+                <div class="checkbox icheck">
+                    {{with $field := field "login.RememberMe" .}}
+                    <label>
+                        <input type="checkbox" name="{{$field.Name}}" {{$field.Flash}}> Remember Me
+                    </label>
+                    <p class="{{$field.ErrorClass}}">
+                        <span class="error">{{$field.Error}}</span>
+                    </p>
+                    {{end}}
+                </div>
+            </div>
+            <div class="col-xs-4">
+                <button type="submit" class="btn btn-danger btn-block btn-flat"
+                        style="background-color: #f05223; border-color: #f05223">Sign In</button>
+            </div>
+        </div>
+        </form>
+    </div>
+</div>
+{{template "template/login.footer.html" .}}l
+<script type="text/javascript">
+    $(function () {
+        $('input').iCheck({
+            checkboxClass: 'icheckbox_square-blue',
+            radioClass: 'iradio_square-blue',
+            increaseArea: '20%' // optional
+        });
+    });
+</script>

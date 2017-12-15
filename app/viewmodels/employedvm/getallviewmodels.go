@@ -15,7 +15,7 @@ type GetAllViewModelsResponse struct {
 }
 
 func (vm GetAllViewModels) LoadAll() GetAllViewModelsResponse{
-	employedList, err := vm.Txn.Select(models.Employed{}, "SELECT * FROM `data`")
+	employedList, err := vm.Txn.Select(models.Employed{}, "SELECT * FROM `employed`")
 	if err == nil{
 		return GetAllViewModelsResponse{
 			EmlpoyedList: employedList,
