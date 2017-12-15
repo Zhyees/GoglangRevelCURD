@@ -19,7 +19,7 @@ type DeleteActionViewModelResponse struct {
 func (vm DeleteActionViewModel) LoadAll() DeleteActionViewModelResponse{
 	employed := models.Employed{}
 	var errMessage string = "Gagal menghapus Employed"
-	err := vm.Txn.SelectOne(&employed, "SELECT * FROM `data` where id = ?", vm.Id)
+	err := vm.Txn.SelectOne(&employed, "SELECT * FROM `employed` where id = ?", vm.Id)
 	revel.WARN.Printf("%#v", err)
 	if err == nil {
 		employed.Id = vm.Id

@@ -1,0 +1,27 @@
+{{template "template/login.header.html" .}}
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class = "panel panel-default" style="margin-top: 20px">
+                <div class = "panel-heading">
+                    <h3 class = "panel-title">
+                        <h4>Oops! Anda Tidak Dapat Melihat Halaman Ini</h4>
+                    </h3>
+                </div>
+                <div class = "panel-body">
+                    <p>
+                        Halaman yang anda tuju tidak terdaftar / tidak dapat diakses oleh anda. Silahkan kembali ke halaman utama, klik keluar untuk meninggalkan halaman ini.
+                    </p>
+                </div>
+                <div class = "panel-body">
+                    <a href="/admin/logout/">
+                        <button type="button" class="btn btn-danger">
+                            <span class="glyphicon glyphicon-menu-left"></span> Keluar
+                        </button>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{{template "template/login.footer.html" .}}

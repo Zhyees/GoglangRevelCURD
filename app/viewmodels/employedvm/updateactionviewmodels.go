@@ -21,7 +21,7 @@ type UpdateActionViewModelResponse struct {
 func (vm UpdateActionViewModel) LoadAll() UpdateActionViewModelResponse{
 	employed := models.Employed{}
 	var errMessage string = "Gagal menambahkan Employed"
-	err := vm.Txn.SelectOne(&employed, "SELECT * FROM `data` where id = ?", vm.Id)
+	err := vm.Txn.SelectOne(&employed, "SELECT * FROM `employed` where id = ?", vm.Id)
 	revel.WARN.Printf("%#v", err)
 
 	employed.Name = vm.UpdateEmployed.Name
